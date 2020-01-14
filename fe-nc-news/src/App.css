@@ -1,0 +1,124 @@
+.App {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: rgb(45, 45, 45);
+  background-color: rgb(247, 247, 247);
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 80px;
+  font-weight: 900;
+  align-content: center;
+  background-color: #b9e3ff;
+}
+
+h1 {
+  font-weight: bolder;
+  /* margin-left: 15px; */
+}
+
+main {
+  padding-top: 40px;
+}
+
+#nav-bar {
+  display: flex;
+  align-content: center;
+  height: 5vh;
+  justify-content: space-evenly;
+  font-size: medium;
+  font-weight: bold;
+  margin: 0;
+  background-color: #b9e3ff;
+  padding-top: 15px;
+  border-top: 1px solid grey;
+  list-style: none;
+}
+
+#article-list {
+  list-style: none;
+}
+
+#user-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5%;
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid grey;
+  max-height: 25vh;
+  text-align: center;
+  margin: 5px;
+  background-color: white;
+  box-shadow: 2px 2px 5px grey;
+}
+
+.user-card img {
+  border-radius: 25px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.article-card {
+  display: grid;
+  grid-template-columns: 20% 30% 30% 20%;
+  grid-template-rows: 30% 20% 30% 20%;
+  justify-content: space-between;
+  text-align: center;
+  margin: 20px;
+  background-color: white;
+  box-shadow: 2px 2px 5px grey;
+}
+
+.article-card img {
+  width: 100%;
+  height: 100%;
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 4;
+  object-fit: cover;
+}
+
+.article-title {
+  text-align: center;
+  grid-column: 2 / span 2;
+  grid-row: 1 / span 1;
+}
+
+.article-topic {
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 1;
+}
+.article-author {
+  grid-column: 3 / span 1;
+  grid-row: 2 / span 1;
+}
+.article-votes {
+  grid-column: 2 / span 1;
+  grid-row: 3 / span 1;
+}
+.article-comments {
+  grid-column: 3 / span 1;
+  grid-row: 3 / span 1;
+}
+.article-date {
+  grid-column: 2 / span 2;
+  grid-row: 4 / span 1;
+}
+
+.article-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #b9e3ff;
+  font-size: x-large;
+  font-weight: 900;
+  grid-column: 4 / span 1;
+  grid-row: 1 / span 4;
+}
