@@ -4,7 +4,7 @@ import ArticleCard from './ArticleCard';
 import SortForm from './SortForm';
 
 class ArticleList extends Component {
-  state = { articles: [], isLoading: true };
+  state = { articles: [], isLoading: true, sort_by: null, order: null };
 
   componentDidMount() {
     getData('articles', this.props.topic, undefined, 'created_at').then(

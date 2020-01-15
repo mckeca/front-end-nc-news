@@ -18,8 +18,13 @@ class Voter extends Component {
     const { subject } = this.props;
     const { voteChange, voted } = this.state;
     return (
-      <section>
-        <p>{subject.votes + voteChange}</p>
+      <section id="vote-comment-btn">
+        <p>
+          <span role="img" aria-label="votes">
+            👍
+          </span>
+          {subject.votes + voteChange}
+        </p>
         <button onClick={this.handleClick} name="plus" disabled={voted}>
           +
         </button>

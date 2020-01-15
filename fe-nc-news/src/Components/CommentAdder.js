@@ -30,7 +30,7 @@ class CommentAdder extends Component {
     event.preventDefault();
     const { comment } = this.state;
     const newComment = { body: comment, username: this.props.activeUser };
-    this.props.addComment(this.props.article, newComment);
+    this.props.addComment(this.props.article.article_id, newComment);
     this.setState({ comment: '' });
   };
 }

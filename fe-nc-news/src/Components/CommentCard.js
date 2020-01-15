@@ -4,20 +4,22 @@ import Voter from './Voter';
 
 const CommentCard = ({ comment, activeUser, removeComment }) => {
   return (
-    <li>
-      <p>{comment.body}</p>
-      <button
-        onClick={() => {
-          if (activeUser === comment.author) {
-            removeComment(comment.comment_id);
-          }
-        }}
-      >
-        X
-      </button>
+    <li className="comment-card">
+      <main>{comment.body}</main>
+      {activeUser === comment.author && (
+        <section id="delete-comment-btn">
+          <button
+            onClick={() => {
+              removeComment(comment.comment_id);
+            }}
+          >
+            X
+          </button>
+        </section>
+      )}
       <Voter subject={comment} activeUser={activeUser} />
-      <p>{comment.author}</p>
-      <p>{formatDates(comment.created_at)}</p>
+      <p id="comment-author">{comment.author}</p>
+      <p id="comment-date">{formatDates(comment.created_at)}</p>
     </li>
   );
 };

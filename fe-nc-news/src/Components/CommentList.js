@@ -9,9 +9,11 @@ class CommentList extends Component {
   };
 
   componentDidMount() {
-    getCommentsByArticle(this.props.article).then(({ comments }) => {
-      this.setState({ comments });
-    });
+    getCommentsByArticle(this.props.article.article_id)
+      .then(({ comments }) => {
+        this.setState({ comments });
+      })
+      .catch(err => console.dir(err));
   }
 
   render() {

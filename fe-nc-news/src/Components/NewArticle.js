@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getData, postArticle, postTopic } from '../api';
 import { Redirect, navigate } from '@reach/router';
-import NewTopic from './NewTopic';
+// import NewTopic from './NewTopic';
 
 class NewArticle extends Component {
   state = {
@@ -59,7 +59,7 @@ class NewArticle extends Component {
             <button type="submit">Submit Article</button>
           </label>
         </form>
-        <NewTopic addTopic={this.addTopic} />
+        {/* <NewTopic addTopic={this.addTopic} /> */}
       </main>
     );
   }
@@ -72,20 +72,20 @@ class NewArticle extends Component {
     this.setState({ articleTopic: event.target.value });
   };
 
-  addTopic = topic => {
-    postTopic(topic)
-      .then(({ topic }) => {
-        this.setState(currentState => {
-          return {
-            topics: [topic, ...currentState.topics],
-            articleTopic: topic
-          };
-        });
-      })
-      .catch(err => {
-        console.dir(err);
-      });
-  };
+  // addTopic = topic => {
+  //   postTopic(topic)
+  //     .then(({ topic }) => {
+  //       this.setState(currentState => {
+  //         return {
+  //           topics: [topic, ...currentState.topics],
+  //           articleTopic: topic
+  //         };
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.dir(err);
+  //     });
+  // };
 
   handleArticleSubmit = async event => {
     event.preventDefault();

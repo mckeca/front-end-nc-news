@@ -2,43 +2,58 @@
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   display: flex;
   flex-direction: column;
+  align-items: center;
   color: rgb(45, 45, 45);
   background-color: rgb(247, 247, 247);
 }
 
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  grid-template-rows: 60% 40%;
   width: 100vw;
-  height: 80px;
+  height: 100px;
   font-weight: 900;
-  align-content: center;
   background-color: #b9e3ff;
 }
 
 h1 {
   font-weight: bolder;
+  text-align: center;
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
 }
 
 main {
   padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#active-user {
-  margin-right: 50px;
+#current-user {
+  grid-column: 3 / span 1;
+  grid-row: 1 / span 1;
+}
+
+#menu-btn {
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #nav-bar {
+  grid-column: 1 / span 3;
+  grid-row: 2 / span 1;
   display: flex;
+  width: 50%;
   align-content: center;
-  height: 5vh;
-  justify-content: space-evenly;
+  justify-content: space-between;
   font-size: medium;
   font-weight: bold;
-  margin: 0;
   background-color: #b9e3ff;
-  padding-top: 15px;
   border-top: 1px solid grey;
   list-style: none;
 }
@@ -50,38 +65,50 @@ main {
   align-items: stretch;
 }
 
-#user-list {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 5%;
-}
-
-.user-card {
+#article-page {
+  width: 90vw;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 2px solid grey;
-  max-height: 25vh;
-  text-align: center;
-  margin: 5px;
+  align-items: center;
+}
+
+#article-page h2 {
+  align-self: flex-start;
+  text-align: left;
+}
+
+#article-page-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+#article-page-subinfo {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+}
+
+#article-body {
+  text-align: left;
+  padding: 15px;
+  width: 100%;
   background-color: white;
   box-shadow: 2px 2px 5px grey;
 }
 
-.user-card img {
-  border-radius: 25px;
-  max-width: 100px;
-  max-height: 100%;
-  object-fit: contain;
-}
-
 .article-card {
   display: grid;
-  width: 70%;
-  grid-template-columns: repeat(4, 25%);
+  width: 90%;
+  grid-template-columns: 25% 30% 30% 15%;
   grid-template-rows: 30% 20% 30% 20%;
   justify-content: space-between;
   text-align: center;
+  font-weight: bolder;
   margin: 20px;
   background-color: white;
   box-shadow: 2px 2px 5px grey;
@@ -120,15 +147,55 @@ main {
 .article-date {
   grid-column: 2 / span 2;
   grid-row: 4 / span 1;
+  font-weight: normal;
 }
 
 .article-link {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   background-color: #b9e3ff;
   font-size: x-large;
   font-weight: 900;
   grid-column: 4 / span 1;
   grid-row: 1 / span 4;
+}
+
+.comment-card {
+  background-color: white;
+  box-shadow: 2px 2px 5px grey;
+  padding: 5px;
+  display: grid;
+  grid-template-columns: 3fr 3fr 1fr;
+  grid-template-rows: 2fr 1fr;
+  text-align: left;
+}
+
+.comment-card main {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 1;
+}
+
+#delete-comment-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  grid-column: 3 / span 1;
+  grid-row: 1 / span 1;
+}
+
+#vote-comment-btn {
+  grid-column: 1 / span 1;
+  grid-row: 2 / span 1;
+}
+
+#comment-author {
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 1;
+}
+
+#comment-date {
+  grid-column: 3 / span 1;
+  grid-row: 2 / span 1;
 }

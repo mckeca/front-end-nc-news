@@ -23,13 +23,15 @@ class ArticlePage extends Component {
     return isLoading ? (
       <p>Loading</p>
     ) : (
-      <section>
+      <section id="article-page">
         <h2>{article.title}</h2>
-        <ArticleDelete activeUser={activeUser} article={article} />
-        <h3>{article.author}</h3>
-        <p>{formatDates(article.created_at)}</p>
-        <Voter subject={article} activeUser={activeUser} />
-        <main>{article.body}</main>
+        <main id="article-body">{article.body}</main>
+        <section id="article-page-header">
+          <h3>{article.author}</h3>
+          <p>{formatDates(article.created_at)}</p>
+          <Voter subject={article} activeUser={activeUser} />
+          <ArticleDelete activeUser={activeUser} article={article} />
+        </section>{' '}
         <CommentList article={article} activeUser={activeUser} />
       </section>
     );

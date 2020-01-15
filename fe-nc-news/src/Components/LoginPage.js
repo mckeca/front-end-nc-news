@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getData } from '../api';
-// import { Link } from '@reach/router';
+import { navigate } from '@reach/router';
 
 class LoginPage extends Component {
   state = { username: 'tickle122', users: [], isLoading: true };
@@ -42,6 +42,7 @@ class LoginPage extends Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.logIn(this.state.username);
+    navigate('/');
   };
 }
 
