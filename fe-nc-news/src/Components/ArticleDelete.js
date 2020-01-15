@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import {deleteArticle} from '../api'
+import { deleteArticle } from '../api';
+import { navigate } from '@reach/router';
 
 class ArticleDelete extends Component {
   state = {
     toggleSureCheck: false
   };
   render() {
-    const { article } = this.props;
+    const { article, activeUser } = this.props;
     const { toggleSureCheck } = this.state;
     return (
       <section>
-        {this.props.activeUser === article.author && (
+        {activeUser === article.author && (
           <button onClick={this.toggleSure}>Delete</button>
         )}
         {toggleSureCheck && <button onClick={this.removeArticle}>Yes!</button>}
@@ -20,14 +21,17 @@ class ArticleDelete extends Component {
   }
 
   toggleSure = () => {
-      this.setState((currentState) => {
-          return {toggleSureCheck: !currentState.toggleSureCheck}
-      })
-  }
+    this.setState(currentState => {
+      return { toggleSureCheck: !currentState.toggleSureCheck };
+    });
+  };
 
-  removeArticle = () > {
-
-  }
+  removeArticle = () => {
+    const { article, activeUser } = this.props;
+    deleteArticle(article.article_id).then(() => {
+      navigate(`/users/${activeUser}`);
+    });
+  };
 }
 
 export default ArticleDelete;

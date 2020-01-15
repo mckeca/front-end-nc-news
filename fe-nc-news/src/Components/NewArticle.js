@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { getData, postArticle, postTopic } from '../api';
-import { Redirect } from '@reach/router';
+import { Redirect, navigate } from '@reach/router';
+import NewTopic from './NewTopic';
 
 class NewArticle extends Component {
   state = {
     article: {},
     articleTitle: '',
     articleText: '',
-    topicName: '',
-    topicDesc: '',
     articleTopic: 'coding',
     topics: [],
     redirect: false
@@ -60,30 +59,7 @@ class NewArticle extends Component {
             <button type="submit">Submit Article</button>
           </label>
         </form>
-        <p>Can't find what you're looking for? Create a new topic:</p>
-        <form onSubmit={this.handleTopicSubmit}>
-          <label>
-            {' '}
-            New topic name:
-            <input
-              type="text"
-              name="topicName"
-              onChange={this.handleTextChange}
-              value={this.state.topicName}
-            ></input>
-          </label>
-          <label>
-            {' '}
-            New topic description:
-            <input
-              type="text"
-              name="topicDesc"
-              onChange={this.handleTextChange}
-              value={this.state.topicDesc}
-            ></input>
-          </label>
-          <button type="submit">Submit Topic</button>
-        </form>
+        <NewTopic addTopic={this.addTopic} />
       </main>
     );
   }
@@ -96,17 +72,14 @@ class NewArticle extends Component {
     this.setState({ articleTopic: event.target.value });
   };
 
-  handleTopicSubmit = event => {
-    event.preventDefault();
-    const { topicDesc, topicName } = this.state;
-    const topic = {
-      description: topicDesc,
-      slug: topicName
-    };
+  addTopic = topic => {
     postTopic(topic)
       .then(({ topic }) => {
         this.setState(currentState => {
-          return { topics: [topic, ...currentState.topics] };
+          return {
+            topics: [topic, ...currentState.topics],
+            articleTopic: topic
+          };
         });
       })
       .catch(err => {
@@ -114,7 +87,7 @@ class NewArticle extends Component {
       });
   };
 
-  handleArticleSubmit = event => {
+  handleArticleSubmit = async event => {
     event.preventDefault();
     const { articleText, articleTitle, articleTopic } = this.state;
     const article = {
@@ -125,7 +98,8 @@ class NewArticle extends Component {
     };
     postArticle(article)
       .then(({ article }) => {
-        this.setState({ article, redirect: true });
+        this.setState({ article });
+        navigate(`/articles/${article.article_id}`);
       })
       .catch(err => {
         console.dir(err);

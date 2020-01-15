@@ -3,11 +3,11 @@ import { getArticle, postComment } from '../api';
 import { formatDates } from '../utils';
 import CommentList from './CommentList';
 import Voter from './Voter';
+import ArticleDelete from './ArticleDelete';
 
 class ArticlePage extends Component {
   state = {
     article: {},
-    toggleSureCheck: false,
     isLoading: true
   };
 
@@ -18,25 +18,19 @@ class ArticlePage extends Component {
   }
 
   render() {
-    const { article, isLoading, toggleSureCheck } = this.state;
+    const { article, isLoading } = this.state;
+    const { activeUser } = this.props;
     return isLoading ? (
       <p>Loading</p>
     ) : (
       <section>
         <h2>{article.title}</h2>
-        {this.props.activeUser === article.author && (
-          <button onClick={this.toggleSure}>Delete</button>
-        )}
-        {toggleSureCheck && <button onClick={this.deleteComment}>Yes!</button>}
-        {toggleSureCheck && <button onClick={this.toggleSure}>Nope</button>}
+        <ArticleDelete activeUser={activeUser} article={article} />
         <h3>{article.author}</h3>
         <p>{formatDates(article.created_at)}</p>
-        <Voter subject={article} activeUser={this.props.activeUser} />
+        <Voter subject={article} activeUser={activeUser} />
         <main>{article.body}</main>
-        <CommentList
-          article={this.props.article}
-          activeUser={this.props.activeUser}
-        />
+        <CommentList article={article} activeUser={activeUser} />
       </section>
     );
   }

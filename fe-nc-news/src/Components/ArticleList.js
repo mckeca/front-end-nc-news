@@ -33,8 +33,10 @@ class ArticleList extends Component {
 
   render() {
     const { articles, isLoading } = this.state;
+    const { topic } = this.props;
     return (
       <main>
+        {topic && <h3>{topic.slice(0, 1).toUpperCase() + topic.slice(1)}</h3>}
         <SortForm sortList={this.sortList} />
         {isLoading ? (
           <p>Loading</p>

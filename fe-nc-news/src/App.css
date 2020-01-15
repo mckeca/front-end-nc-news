@@ -1,5 +1,7 @@
 .App {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  display: flex;
+  flex-direction: column;
   color: rgb(45, 45, 45);
   background-color: rgb(247, 247, 247);
 }
@@ -68,7 +70,7 @@ main {
 
 .user-card img {
   border-radius: 25px;
-  max-width: 100%;
+  max-width: 100px;
   max-height: 100%;
   object-fit: contain;
 }
@@ -76,7 +78,7 @@ main {
 .article-card {
   display: grid;
   width: 70%;
-  grid-template-columns: 25% 37.5% 37.5%;
+  grid-template-columns: repeat(4, 25%);
   grid-template-rows: 30% 20% 30% 20%;
   justify-content: space-between;
   text-align: center;
