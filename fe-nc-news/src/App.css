@@ -5,6 +5,7 @@
   align-items: center;
   color: rgb(45, 45, 45);
   background-color: rgb(247, 247, 247);
+  height: 100vh;
 }
 
 header {
@@ -31,6 +32,16 @@ main {
   align-items: center;
 }
 
+#err-msg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 400px;
+  background-color: white;
+  box-shadow: 2px 2px 2px grey;
+}
+
 #current-user {
   grid-column: 3 / span 1;
   grid-row: 1 / span 1;
@@ -41,7 +52,16 @@ main {
   grid-row: 1 / span 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+}
+
+#menu-btn button {
+  background-color: white;
+  border: none;
+  box-shadow: 2px 2px 2px grey;
+  height: 40%;
+  border-radius: 50px;
+  font-weight: bold;
 }
 
 #nav-bar {

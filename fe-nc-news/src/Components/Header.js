@@ -14,7 +14,7 @@ class Header extends Component {
       <header>
         <section id="menu-btn">
           <button onClick={this.toggleNavBar}>
-            {showNavBar ? 'Close' : 'Menu'}
+            {showNavBar ? 'X' : '...'}
           </button>
         </section>
         {showNavBar && (
