@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getData, getUser } from '../api';
 import ArticleCard from './ArticleCard';
+import { Link } from '@reach/router';
 
 class UserPage extends Component {
   state = {
@@ -26,6 +27,14 @@ class UserPage extends Component {
       <main>
         <img src={user.avatar_url} alt={user.username} />
         <h3>{user.name}</h3>
+        {this.props.activeUser === user.username && (
+          <Link
+            to="/articles/new"
+            style={{ textDecoration: 'none', color: 'black' }}
+          >
+            New Article
+          </Link>
+        )}
         <ul>
           {articles.map(article => {
             return <ArticleCard key={article.article_id} article={article} />;

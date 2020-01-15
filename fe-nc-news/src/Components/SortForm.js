@@ -18,7 +18,15 @@ class SortForm extends Component {
             name="sort_by"
             id="votes"
           >
-            Popularity
+            Votes
+          </button>
+          <button
+            type="button"
+            onClick={this.handleClick}
+            name="sort_by"
+            id="comment_count"
+          >
+            Comments
           </button>
           <button
             type="button"
