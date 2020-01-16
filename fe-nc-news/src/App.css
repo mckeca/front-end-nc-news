@@ -55,7 +55,7 @@ button:hover {
   height: 100px;
   width: 400px;
   background-color: white;
-  box-shadow: 2px 2px 2px grey;
+  box-shadow: 2px 2px 3px grey;
 }
 
 #page-btns {
