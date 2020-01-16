@@ -13,48 +13,52 @@ class SortForm extends Component {
           X
         </button>
         <form id="sort-form" onSubmit={this.handleSubmit}>
-          <p>Sort By:</p>
-          <button
-            type="button"
-            onClick={this.handleClick}
-            name="sort_by"
-            id="votes"
-          >
-            Votes
-          </button>
-          <button
-            type="button"
-            onClick={this.handleClick}
-            name="sort_by"
-            id="comment_count"
-          >
-            Comments
-          </button>
-          <button
-            type="button"
-            onClick={this.handleClick}
-            name="sort_by"
-            id="created_at"
-          >
-            Date
-          </button>
-          <p>Order:</p>
-          <button
-            type="button"
-            onClick={this.handleClick}
-            name="order"
-            id="asc"
-          >
-            Ascending
-          </button>
-          <button
-            type="button"
-            onClick={this.handleClick}
-            name="order"
-            id="desc"
-          >
-            Descending
-          </button>
+          <section id="sort">
+            <p>Sort By:</p>
+            <button
+              type="button"
+              onClick={this.handleClick}
+              name="sort_by"
+              id="votes"
+            >
+              Votes
+            </button>
+            <button
+              type="button"
+              onClick={this.handleClick}
+              name="sort_by"
+              id="comment_count"
+            >
+              Comments
+            </button>
+            <button
+              type="button"
+              onClick={this.handleClick}
+              name="sort_by"
+              id="created_at"
+            >
+              Date
+            </button>
+          </section>
+          <section id="order">
+            <p>Order:</p>
+            <button
+              type="button"
+              onClick={this.handleClick}
+              name="order"
+              id="asc"
+            >
+              Ascending
+            </button>
+            <button
+              type="button"
+              onClick={this.handleClick}
+              name="order"
+              id="desc"
+            >
+              Descending
+            </button>
+          </section>
           <button type="submit">Submit</button>
         </form>
       </section>

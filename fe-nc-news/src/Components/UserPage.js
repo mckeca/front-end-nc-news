@@ -31,7 +31,7 @@ class UserPage extends Component {
     return isLoading ? (
       <p>Loading</p>
     ) : (
-      <main>
+      <main id="user-page">
         <img src={user.avatar_url} alt={user.username} />
         <h3>{user.name}</h3>
         {this.props.activeUser === user.username && (
@@ -43,7 +43,7 @@ class UserPage extends Component {
             New Article
           </Link>
         )}
-        <ul>
+        <ul id="user-articles">
           {articles.map(article => {
             return <ArticleCard key={article.article_id} article={article} />;
           })}

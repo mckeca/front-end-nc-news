@@ -18,7 +18,6 @@ class NavBar extends Component {
 
   render() {
     const { topics, isLoading, err } = this.state;
-    if (isLoading) return <p>Fetching topics...</p>;
     if (err) return <ErrorDisplay err={err} />;
     return (
       <ul id="nav-bar">
@@ -27,18 +26,22 @@ class NavBar extends Component {
             ALL
           </Link>
         </li>
-        {topics.map(topic => {
-          return (
-            <li key={topic.slug} className="topic-button">
-              <Link
-                to={`/${topic.slug}`}
-                style={{ textDecoration: 'none', color: 'white' }}
-              >
-                {topic.slug.toUpperCase()}
-              </Link>
-            </li>
-          );
-        })}
+        {isLoading ? (
+          <li key="loading">Fetching Topics...</li>
+        ) : (
+          topics.map(topic => {
+            return (
+              <li key={topic.slug} className="topic-button">
+                <Link
+                  to={`/${topic.slug}`}
+                  style={{ textDecoration: 'none', color: 'white' }}
+                >
+                  {topic.slug.toUpperCase()}
+                </Link>
+              </li>
+            );
+          })
+        )}
         <li key="divider">|</li>
         <li>
           <button onClick={this.props.logOut}>Log Out</button>
