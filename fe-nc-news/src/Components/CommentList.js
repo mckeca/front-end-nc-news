@@ -25,7 +25,7 @@ class CommentList extends Component {
     const { comments, page, err } = this.state;
     if (err) return <ErrorDisplay err={err} />;
     return (
-      <section>
+      <section id="comment-list">
         <p>comments: {article.comment_count}</p>
         <Paginator
           page={page}

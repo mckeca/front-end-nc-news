@@ -1,5 +1,6 @@
 .App {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  /* font-family: 'Gayathri', sans-serif; */
+  font-family: 'Quicksand', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,13 +19,11 @@ header {
   grid-template-rows: 60% 40%;
   width: 100vw;
   height: 100px;
-  font-weight: 900;
   background-color: black;
   color: white;
 }
 
 h1 {
-  font-weight: bolder;
   text-align: center;
   grid-column: 2 / span 1;
   grid-row: 1 / span 1;
@@ -65,6 +64,13 @@ button:hover {
   justify-content: space-around;
 }
 
+#page-btns button {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
 #new-article-btn {
   width: 8%;
   text-align: center;
@@ -84,9 +90,6 @@ button:hover {
   height: 83vh;
   width: 80vw;
 }
-
-
-
 
 #new-article-title {
   grid-column: 1 / span 1;
@@ -140,9 +143,6 @@ button:hover {
 
 #login-form select {
   display: block;
-  font-size: 16px;
-  font-family: sans-serif;
-  font-weight: 700;
   color: #444;
   padding: 0.4em 1.4em 0.45em 0.6em;
   box-sizing: border-box;
@@ -160,7 +160,19 @@ button:hover {
 }
 
 #sort-btn {
+  align-self: center;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#close-sort-btn {
   align-self: flex-start;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 #sort-form {
@@ -173,6 +185,14 @@ button:hover {
 
 #sort-form button {
   margin-top: 5px;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+#comment-list {
+  width: 100%;
 }
 
 #menu-btn {
@@ -189,7 +209,7 @@ button:hover {
   border: none;
   box-shadow: 2px 2px 2px grey;
   height: 40%;
-  border-radius: 50px;
+  border-radius: 5px;
   font-weight: bold;
 }
 
@@ -200,8 +220,6 @@ button:hover {
   width: 30%;
   align-content: center;
   justify-content: space-between;
-  font-size: medium;
-  font-weight: bold;
   background-color: black;
 }
 
@@ -254,7 +272,6 @@ button:hover {
   grid-template-rows: 30% 20% 30% 20%;
   justify-content: space-between;
   text-align: center;
-  font-weight: bolder;
   margin: 20px;
   background-color: white;
   box-shadow: 2px 2px 5px grey;
@@ -299,12 +316,10 @@ button:hover {
 .article-link {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   text-align: center;
   background-color: black;
   color: white;
-  font-size: x-large;
-  font-weight: 900;
   grid-column: 4 / span 1;
   grid-row: 1 / span 4;
 }

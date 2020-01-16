@@ -6,10 +6,12 @@ class SortForm extends Component {
   render() {
     const { hideForm } = this.state;
     return hideForm ? (
-      <button onClick={this.toggleForm}>Sort</button>
+      <button id="sort-btn" onClick={this.toggleForm}>
+        Sort
+      </button>
     ) : (
       <section>
-        <button id="sort-btn" onClick={this.toggleForm}>
+        <button id="close-sort-btn" onClick={this.toggleForm}>
           X
         </button>
         <form id="sort-form" onSubmit={this.handleSubmit}>

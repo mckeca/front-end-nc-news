@@ -44,7 +44,7 @@ const ArticleCard = ({ article }) => {
           style={{ textDecoration: 'none', color: 'white' }}
           className="article-link"
         >
-          ><p></p>
+          more...<p></p>
         </Link>
       </section>
     </li>
