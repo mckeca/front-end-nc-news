@@ -81,7 +81,7 @@ button:hover {
 #new-article-form {
   display: grid;
   grid-template: 1fr 1fr 10fr 1fr / 1fr 1fr;
-  height: 80vh;
+  height: 83vh;
   width: 80vw;
 }
 
