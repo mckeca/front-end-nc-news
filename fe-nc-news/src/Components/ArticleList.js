@@ -3,6 +3,7 @@ import { getData } from '../api';
 import ArticleCard from './ArticleCard';
 import SortForm from './SortForm';
 import ErrorDisplay from './ErrorDisplay';
+import Paginator from './Paginator';
 
 class ArticleList extends Component {
   state = {
@@ -20,12 +21,15 @@ class ArticleList extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const topicChange = prevProps.topic !== this.props.topic;
-    const sortByChange = this.state.sort_by !== prevState.sort_by;
-    const orderChange = this.state.order !== prevState.order;
-    const pageChange = this.state.page !== prevState.page;
+    const { topic } = this.props;
+    const { sort_by, order, page } = this.state;
+    const topicChange = prevProps.topic !== topic;
+    const sortByChange = sort_by !== prevState.sort_by;
+    const orderChange = order !== prevState.order;
+    const pageChange = page !== prevState.page;
     if (topicChange || sortByChange || orderChange || pageChange)
       this.fetchData();
+    if (topicChange) this.setState({ page: 1 });
   }
 
   render() {
@@ -36,24 +40,11 @@ class ArticleList extends Component {
       <main>
         {topic && <h3>{topic.slice(0, 1).toUpperCase() + topic.slice(1)}</h3>}
         <SortForm sortList={this.sortList} />
-        <section id="page-btns">
-          <button
-            onClick={() => {
-              this.handleClick(-1);
-            }}
-            disabled={page === 1}
-          >
-            Prev
-          </button>
-          <button
-            onClick={() => {
-              this.handleClick(1);
-            }}
-            disabled={page === Math.ceil(totalCount / 10)}
-          >
-            Next
-          </button>
-        </section>
+        <Paginator
+          page={page}
+          count={totalCount}
+          handleClick={this.handleClick}
+        />
         {isLoading ? (
           <p>Loading</p>
         ) : (
@@ -72,7 +63,11 @@ class ArticleList extends Component {
     const { sort_by, order, page } = this.state;
     getData('articles', topic, undefined, sort_by, order, page)
       .then(({ articles, total_count }) => {
-        this.setState({ articles, totalCount: total_count, isLoading: false });
+        this.setState({
+          articles,
+          totalCount: total_count,
+          isLoading: false
+        });
       })
       .catch(({ response }) => {
         this.setState({ err: response, isLoading: false });

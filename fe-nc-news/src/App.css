@@ -361,7 +361,7 @@ button:hover {
   header {
     display: flex;
     flex-direction: column;
-    height: 40vh;
+    height: 35vh;
     align-items: center;
   }
 
@@ -411,11 +411,12 @@ button:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 60vh;
+    height: 65vh;
   }
 
   #new-article-form button {
     height: 30px;
     width: 40%;
+    margin-bottom: 10px;
   }
 }

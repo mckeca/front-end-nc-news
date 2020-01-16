@@ -32,10 +32,15 @@ export const getArticle = article => {
     });
 };
 
-export const getCommentsByArticle = article => {
+export const getCommentsByArticle = (article, page) => {
   return axios
     .get(
-      `https:cals-nc-news-app.herokuapp.com/api/articles/${article}/comments`
+      `https:cals-nc-news-app.herokuapp.com/api/articles/${article}/comments`,
+      {
+        params: {
+          page
+        }
+      }
     )
     .then(res => {
       return res.data;
