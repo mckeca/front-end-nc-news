@@ -85,6 +85,9 @@ button:hover {
   width: 80vw;
 }
 
+
+
+
 #new-article-title {
   grid-column: 1 / span 1;
   grid-row: 1 / span 1;
