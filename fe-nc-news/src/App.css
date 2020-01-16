@@ -406,4 +406,16 @@ button:hover {
     align-content: center;
     padding: 0;
   }
+
+  #new-article-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 60vh;
+  }
+
+  #new-article-form button {
+    height: 30px;
+    width: 40%;
+  }
 }
