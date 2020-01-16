@@ -13,9 +13,7 @@ class Header extends Component {
     return (
       <header>
         <section id="menu-btn">
-          <button onClick={this.toggleNavBar}>
-            {showNavBar ? 'X' : '...'}
-          </button>
+          <button onClick={this.toggleNavBar}>{showNavBar ? 'X' : 'M'}</button>
         </section>
         {showNavBar && (
           <NavBar logOut={logOut} toggleNavBar={this.toggleNavBar} />
@@ -27,7 +25,8 @@ class Header extends Component {
           ) : (
             <Link
               to="/login"
-              style={{ textDecoration: 'none', color: 'black' }}
+              style={{ textDecoration: 'none', color: 'white' }}
+              id="login-btn"
             >
               <button>Log In</button>
             </Link>

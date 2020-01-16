@@ -41,7 +41,7 @@ const ArticleCard = ({ article }) => {
         <p className="article-date">{formatDates(article.created_at)}</p>
         <Link
           to={`/articles/${article.article_id}`}
-          style={{ textDecoration: 'none', color: 'black' }}
+          style={{ textDecoration: 'none', color: 'white' }}
           className="article-link"
         >
           ><p></p>

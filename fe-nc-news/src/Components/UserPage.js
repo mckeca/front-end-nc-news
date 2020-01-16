@@ -29,8 +29,9 @@ class UserPage extends Component {
         <h3>{user.name}</h3>
         {this.props.activeUser === user.username && (
           <Link
+            id="new-article-btn"
             to="/articles/new"
-            style={{ textDecoration: 'none', color: 'black' }}
+            style={{ textDecoration: 'none', color: 'white' }}
           >
             New Article
           </Link>

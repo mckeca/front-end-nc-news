@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { getData, postArticle, postTopic } from '../api';
+import { getData, postArticle } from '../api';
 import { Redirect, navigate } from '@reach/router';
-// import NewTopic from './NewTopic';
 
 class NewArticle extends Component {
   state = {
@@ -25,8 +24,8 @@ class NewArticle extends Component {
       <Redirect to={`/articles/${article.article_id}`} />
     ) : (
       <main>
-        <form onSubmit={this.handleArticleSubmit}>
-          <label>
+        <form id="new-article-form" onSubmit={this.handleArticleSubmit}>
+          <label id="new-article-title">
             Title:
             <input
               type="text"
@@ -35,7 +34,7 @@ class NewArticle extends Component {
               value={this.state.articleTitle}
             />
           </label>
-          <label>
+          <label id="new-article-topic">
             {' '}
             Topic:
             <select onChange={this.handleSelectChange}>
@@ -48,18 +47,23 @@ class NewArticle extends Component {
               })}
             </select>
           </label>
-          <label>
+          <label id="new-article-text-label" htmlFor="new-article-textarea">
             Article Text:
-            <input
-              type="textarea"
-              name="articleText"
-              onChange={this.handleTextChange}
-              value={this.state.articleText}
-            />
-            <button type="submit">Submit Article</button>
           </label>
+          <textarea
+            id="new-article-textarea"
+            placeholder="Your article here..."
+            cols="30"
+            rows="5"
+            name="articleText"
+            onChange={this.handleTextChange}
+            value={this.state.articleText}
+          />
+
+          <button id="new-article-submit" type="submit">
+            Submit Article
+          </button>
         </form>
-        {/* <NewTopic addTopic={this.addTopic} /> */}
       </main>
     );
   }

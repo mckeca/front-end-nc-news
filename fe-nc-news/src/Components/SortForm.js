@@ -9,8 +9,10 @@ class SortForm extends Component {
       <button onClick={this.toggleForm}>Sort</button>
     ) : (
       <section>
-        <button onClick={this.toggleForm}>X</button>
-        <form onSubmit={this.handleSubmit}>
+        <button id="sort-btn" onClick={this.toggleForm}>
+          X
+        </button>
+        <form id="sort-form" onSubmit={this.handleSubmit}>
           <p>Sort By:</p>
           <button
             type="button"

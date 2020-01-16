@@ -16,7 +16,7 @@ class NavBar extends Component {
     return (
       <ul id="nav-bar">
         <li key="all" className="nav-button">
-          <Link to="/" style={{ textDecoration: 'none', color: 'black' }}>
+          <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
             ALL
           </Link>
         </li>
@@ -25,7 +25,7 @@ class NavBar extends Component {
             <li key={topic.slug} className="topic-button">
               <Link
                 to={`/${topic.slug}`}
-                style={{ textDecoration: 'none', color: 'black' }}
+                style={{ textDecoration: 'none', color: 'white' }}
               >
                 {topic.slug.toUpperCase()}
               </Link>

@@ -16,7 +16,7 @@ class LoginPage extends Component {
     return isLoading ? (
       <p>Loading...</p>
     ) : (
-      <form onSubmit={this.handleSubmit}>
+      <form id="login-form" onSubmit={this.handleSubmit}>
         {this.state.invalidUser && <p>Invalid username</p>}
         <label>
           Log in as:

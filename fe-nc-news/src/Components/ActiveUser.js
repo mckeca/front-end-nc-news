@@ -6,7 +6,7 @@ const ActiveUser = ({ username }) => {
     <section id="active-user">
       <Link
         to={`/users/${username}`}
-        style={{ textDecoration: 'none', color: 'black' }}
+        style={{ textDecoration: 'none', color: 'white' }}
       >
         <p>Logged in as: </p>
         <h3>{username}</h3>
