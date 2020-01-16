@@ -1,7 +1,6 @@
 import './App.css';
 import Header from './Components/Header';
 import ArticleList from './Components/ArticleList';
-// import NavBar from './Components/NavBar';
 import { Router } from '@reach/router';
 import UserList from './Components/UserList';
 import UserPage from './Components/UserPage';
@@ -9,7 +8,7 @@ import ArticlePage from './Components/ArticlePage';
 import React, { Component } from 'react';
 import LoginPage from './Components/LoginPage';
 import NewArticle from './Components/NewArticle';
-// import ActiveUser from './Components/ActiveUser';
+import ErrorDisplay from './Components/ErrorDisplay';
 
 class App extends Component {
   state = {
@@ -29,6 +28,10 @@ class App extends Component {
           <UserList path="/users" />
           <UserPage path="/users/:user" activeUser={activeUser} />
           <NewArticle path="/articles/new" activeUser={activeUser} />
+          <ErrorDisplay
+            default
+            err={{ status: 404, data: { msg: 'Page Not Found' } }}
+          />
         </Router>
       </div>
     );

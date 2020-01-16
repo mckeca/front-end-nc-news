@@ -4,7 +4,8 @@ import { navigate } from '@reach/router';
 
 class ArticleDelete extends Component {
   state = {
-    toggleSureCheck: false
+    toggleSureCheck: false,
+    err: null
   };
   render() {
     const { article, activeUser } = this.props;
@@ -28,9 +29,13 @@ class ArticleDelete extends Component {
 
   removeArticle = () => {
     const { article, activeUser } = this.props;
-    deleteArticle(article.article_id).then(() => {
-      navigate(`/users/${activeUser}`);
-    });
+    deleteArticle(article.article_id)
+      .then(() => {
+        navigate(`/users/${activeUser}`);
+      })
+      .catch(({ response }) => {
+        this.setState({ err: response });
+      });
   };
 }
 

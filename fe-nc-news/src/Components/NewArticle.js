@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getData, postArticle } from '../api';
 import { Redirect, navigate } from '@reach/router';
+import ErrorDisplay from './ErrorDisplay';
 
 class NewArticle extends Component {
   state = {
@@ -9,17 +10,25 @@ class NewArticle extends Component {
     articleText: '',
     articleTopic: 'coding',
     topics: [],
-    redirect: false
+    redirect: false,
+    isLoading: true,
+    err: null
   };
 
   componentDidMount() {
-    getData('topics').then(({ topics }) => {
-      this.setState({ topics });
-    });
+    getData('topics')
+      .then(({ topics }) => {
+        this.setState({ topics, isLoading: false });
+      })
+      .catch(({ response }) => {
+        this.setState({ err: response, isLoading: false });
+      });
   }
 
   render() {
-    const { article, topics, redirect } = this.state;
+    const { article, topics, redirect, isLoading, err } = this.state;
+    if (isLoading) return <p>Loading...</p>;
+    if (err) return <ErrorDisplay err={err} />;
     return redirect ? (
       <Redirect to={`/articles/${article.article_id}`} />
     ) : (
@@ -76,21 +85,6 @@ class NewArticle extends Component {
     this.setState({ articleTopic: event.target.value });
   };
 
-  // addTopic = topic => {
-  //   postTopic(topic)
-  //     .then(({ topic }) => {
-  //       this.setState(currentState => {
-  //         return {
-  //           topics: [topic, ...currentState.topics],
-  //           articleTopic: topic
-  //         };
-  //       });
-  //     })
-  //     .catch(err => {
-  //       console.dir(err);
-  //     });
-  // };
-
   handleArticleSubmit = async event => {
     event.preventDefault();
     const { articleText, articleTitle, articleTopic } = this.state;
@@ -105,8 +99,8 @@ class NewArticle extends Component {
         this.setState({ article });
         navigate(`/articles/${article.article_id}`);
       })
-      .catch(err => {
-        console.dir(err);
+      .catch(({ response }) => {
+        this.setState({ err: response, isLoading: false });
       });
   };
 }

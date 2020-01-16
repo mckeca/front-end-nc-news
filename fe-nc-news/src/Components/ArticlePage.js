@@ -10,7 +10,7 @@ class ArticlePage extends Component {
   state = {
     article: {},
     isLoading: true,
-    error: false
+    err: false
   };
 
   componentDidMount() {
@@ -19,18 +19,17 @@ class ArticlePage extends Component {
         this.setState({ article, isLoading: false });
       })
       .catch(({ response }) => {
-        const error = { status: response.status, msg: response.data.msg };
-        this.setState({ error: error, isLoading: false });
+        this.setState({ err: response, isLoading: false });
       });
   }
 
   render() {
-    const { article, isLoading, error } = this.state;
+    const { article, isLoading, err } = this.state;
     const { activeUser } = this.props;
     return isLoading ? (
       <p>Loading</p>
-    ) : error ? (
-      <ErrorDisplay error={error} />
+    ) : err ? (
+      <ErrorDisplay err={err} />
     ) : (
       <section id="article-page">
         <h2>{article.title}</h2>

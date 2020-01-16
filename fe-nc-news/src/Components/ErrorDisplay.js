@@ -1,9 +1,9 @@
 import React from 'react';
 
-const ErrorDisplay = ({ error }) => {
+const ErrorDisplay = ({ err }) => {
   return (
     <h3 id="err-msg">
-      {error.status}: {error.msg}
+      {err.status}: {err.data.msg}
     </h3>
   );
 };

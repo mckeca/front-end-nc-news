@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 
 class CommentAdder extends Component {
   state = {
-    comment: ''
+    comment: '',
+    emptyComment: false
   };
 
   render() {
+    const { comment, emptyComment } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
@@ -13,11 +15,12 @@ class CommentAdder extends Component {
           <input
             type="textarea"
             name="comment"
-            value={this.state.comment}
+            value={comment}
             onChange={this.handleChange}
           />
         </label>
         <button type="submit">Submit</button>
+        {emptyComment && <p>Please provide comment text</p>}
       </form>
     );
   }
@@ -30,8 +33,12 @@ class CommentAdder extends Component {
     event.preventDefault();
     const { comment } = this.state;
     const newComment = { body: comment, username: this.props.activeUser };
-    this.props.addComment(this.props.article.article_id, newComment);
-    this.setState({ comment: '' });
+    if (comment) {
+      this.props.addComment(this.props.article.article_id, newComment);
+      this.setState({ comment: '', emptyComment: false });
+    } else {
+      this.setState({ emptyComment: true });
+    }
   };
 }
 

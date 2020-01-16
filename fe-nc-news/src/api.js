@@ -1,13 +1,14 @@
 import axios from 'axios';
 
-export const getData = (data, topic, author, sort_by, order) => {
+export const getData = (data, topic, author, sort_by, order, page) => {
   return axios
     .get(`https:cals-nc-news-app.herokuapp.com/api/${data}`, {
       params: {
         topic,
         author,
         sort_by,
-        order
+        order,
+        page
       }
     })
     .then(res => {

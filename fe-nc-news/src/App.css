@@ -59,6 +59,12 @@ button:hover {
   box-shadow: 2px 2px 2px grey;
 }
 
+#page-btns {
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+}
+
 #new-article-btn {
   width: 8%;
   text-align: center;

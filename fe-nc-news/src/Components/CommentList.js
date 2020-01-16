@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { getCommentsByArticle, deleteComment, postComment } from '../api';
 import CommentAdder from './CommentAdder';
 import CommentCard from './CommentCard';
+import ErrorDisplay from './ErrorDisplay';
 
 class CommentList extends Component {
   state = {
-    comments: []
+    comments: [],
+    err: null
   };
 
   componentDidMount() {
@@ -13,11 +15,15 @@ class CommentList extends Component {
       .then(({ comments }) => {
         this.setState({ comments });
       })
-      .catch(err => console.dir(err));
+      .catch(({ response }) => {
+        this.setState({ err: response });
+      });
   }
 
   render() {
     const { article } = this.props;
+    const { comments, err } = this.state;
+    if (err) return <ErrorDisplay err={err} />;
     return (
       <section>
         <p>comments: {article.comment_count}</p>
@@ -27,7 +33,7 @@ class CommentList extends Component {
           activeUser={this.props.activeUser}
         />
         <ul>
-          {this.state.comments.map(comment => {
+          {comments.map(comment => {
             return (
               <CommentCard
                 key={comment.comment_id}
@@ -49,19 +55,25 @@ class CommentList extends Component {
           return { comments: [comment, ...currentState.comments] };
         });
       })
-      .catch(err => console.dir(err));
+      .catch(({ response }) => {
+        this.setState({ err: response });
+      });
   };
 
   removeComment = id => {
-    deleteComment(id).then(() => {
-      this.setState(currentState => {
-        return {
-          comments: currentState.comments.filter(comment => {
-            return comment.comment_id !== id;
-          })
-        };
+    deleteComment(id)
+      .then(() => {
+        this.setState(currentState => {
+          return {
+            comments: currentState.comments.filter(comment => {
+              return comment.comment_id !== id;
+            })
+          };
+        });
+      })
+      .catch(({ response }) => {
+        this.setState({ err: response });
       });
-    });
   };
 }
 

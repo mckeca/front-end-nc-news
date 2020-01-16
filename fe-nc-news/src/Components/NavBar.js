@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import { getData } from '../api';
+import ErrorDisplay from './ErrorDisplay';
 
 class NavBar extends Component {
-  state = { topics: [] };
+  state = { topics: [], isLoading: true, err: null };
 
   componentDidMount() {
-    getData('topics').then(({ topics }) => {
-      this.setState({ topics });
-    });
+    getData('topics')
+      .then(({ topics }) => {
+        this.setState({ topics, isLoading: false });
+      })
+      .catch(({ response }) => {
+        this.setState({ err: response, isLoading: false });
+      });
   }
 
   render() {
-    const { topics } = this.state;
+    const { topics, isLoading, err } = this.state;
+    if (isLoading) return <p>Fetching topics...</p>;
+    if (err) return <ErrorDisplay err={err} />;
     return (
       <ul id="nav-bar">
         <li key="all" className="nav-button">

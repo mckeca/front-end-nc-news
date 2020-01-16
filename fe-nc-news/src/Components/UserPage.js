@@ -2,25 +2,32 @@ import React, { Component } from 'react';
 import { getData, getUser } from '../api';
 import ArticleCard from './ArticleCard';
 import { Link } from '@reach/router';
+import ErrorDisplay from './ErrorDisplay';
 
 class UserPage extends Component {
   state = {
     user: {},
     articles: [],
-    isLoading: true
+    isLoading: true,
+    err: null
   };
 
   componentDidMount() {
     Promise.all([
       getUser(this.props.user),
       getData('articles', undefined, this.props.user)
-    ]).then(([{ user }, { articles }]) => {
-      this.setState({ user, articles, isLoading: false });
-    });
+    ])
+      .then(([{ user }, { articles }]) => {
+        this.setState({ user, articles, isLoading: false });
+      })
+      .catch(({ response }) => {
+        this.setState({ err: response, isLoading: false });
+      });
   }
 
   render() {
-    const { user, articles, isLoading } = this.state;
+    const { user, articles, isLoading, err } = this.state;
+    if (err) return <ErrorDisplay err={err} />;
     return isLoading ? (
       <p>Loading</p>
     ) : (

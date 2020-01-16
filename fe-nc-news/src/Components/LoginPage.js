@@ -3,12 +3,16 @@ import { getData } from '../api';
 import { navigate } from '@reach/router';
 
 class LoginPage extends Component {
-  state = { username: 'tickle122', users: [], isLoading: true };
+  state = { username: 'tickle122', users: [], isLoading: true, err: null };
 
   componentDidMount() {
-    getData('users').then(({ users }) => {
-      this.setState({ users, isLoading: false });
-    });
+    getData('users')
+      .then(({ users }) => {
+        this.setState({ users, isLoading: false });
+      })
+      .catch(({ response }) => {
+        this.setState({ err: response, isLoading: false });
+      });
   }
 
   render() {
