@@ -18,11 +18,17 @@ class NavBar extends Component {
 
   render() {
     const { topics, isLoading, err } = this.state;
-    const { logOut } = this.props;
+    const { logOut, toggleNavBar } = this.props;
     if (err) return <ErrorDisplay err={err} />;
     return (
       <ul id="nav-bar">
-        <li key="all" className="nav-button">
+        <li
+          key="all"
+          className="nav-button"
+          onClick={() => {
+            toggleNavBar();
+          }}
+        >
           <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
             ALL
           </Link>
@@ -32,7 +38,13 @@ class NavBar extends Component {
         ) : (
           topics.map(topic => {
             return (
-              <li key={topic.slug} className="topic-button">
+              <li
+                key={topic.slug}
+                className="topic-button"
+                onClick={() => {
+                  toggleNavBar();
+                }}
+              >
                 <Link
                   to={`/${topic.slug}`}
                   style={{ textDecoration: 'none', color: 'white' }}

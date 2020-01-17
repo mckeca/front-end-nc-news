@@ -5,6 +5,7 @@ import CommentList from './CommentList';
 import Voter from './Voter';
 import ArticleDelete from './ArticleDelete';
 import ErrorDisplay from './ErrorDisplay';
+import { Link } from '@reach/router';
 
 class ArticlePage extends Component {
   state = {
@@ -35,7 +36,12 @@ class ArticlePage extends Component {
         <h2>{article.title}</h2>
         <main id="article-body">{article.body}</main>
         <section id="article-page-header">
-          <h3>{article.author}</h3>
+          <Link
+            to={`/users/${article.author}`}
+            style={{ textDecoration: 'none', color: 'black' }}
+          >
+            <h3>{article.author}</h3>
+          </Link>
           <p>{formatDates(article.created_at)}</p>
           <Voter subject={article} activeUser={activeUser} />
           <ArticleDelete activeUser={activeUser} article={article} />
