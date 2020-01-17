@@ -37,11 +37,13 @@ class CommentAdder extends Component {
     const { comment } = this.state;
     const { article, activeUser, addComment } = this.props;
     const newComment = { body: comment, username: activeUser };
-    if (comment) {
-      addComment(article.article_id, newComment);
-      this.setState({ comment: '', emptyComment: false });
-    } else {
-      this.setState({ emptyComment: true });
+    if (activeUser.length > 0) {
+      if (comment) {
+        addComment(article.article_id, newComment);
+        this.setState({ comment: '', emptyComment: false });
+      } else {
+        this.setState({ emptyComment: true });
+      }
     }
   };
 }

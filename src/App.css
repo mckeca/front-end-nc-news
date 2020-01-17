@@ -404,7 +404,12 @@ button:hover {
   }
 
   #menu-btn {
-    height: 40px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  #menu-btn button {
+    height: 80%;
   }
 
   #nav-bar {
