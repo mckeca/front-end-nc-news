@@ -14,7 +14,7 @@ Welcome to my Northcoders front end project! I've created a React app which will
 - The ability to delete any comments or articles written by your own user
 - The ability to write and add an article to any of the existing topics.
 
-You can find it hosted online at https://cals-nc-news.herokuapp.com/api
+You can find it hosted online at https://cals-front-end-news.herokuapp.com/
 
 You can find the back end hosted online at https://cals-nc-news-app.herokuapp.com/api
 
@@ -30,7 +30,7 @@ git clone https://github.com/mckeca/front-end-nc-news.git
 
 ### Prerequisites
 
-To run this project you will need Node v12.13.1. You can check you versions by running:
+To run this project you will need Node v12.13.1. You can check your version by running:
 
 ```
 node -v
