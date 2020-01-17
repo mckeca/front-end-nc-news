@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getArticle, postComment } from '../api';
+import { getArticle } from '../api';
 import { formatDates } from '../utils';
 import CommentList from './CommentList';
 import Voter from './Voter';
@@ -10,7 +10,7 @@ class ArticlePage extends Component {
   state = {
     article: {},
     isLoading: true,
-    err: false
+    err: null
   };
 
   componentDidMount() {
@@ -44,20 +44,6 @@ class ArticlePage extends Component {
       </section>
     );
   }
-
-  addComment = (body, username) => {
-    if (this.props.activeUser)
-      postComment(this.state.article.article_id, body, username)
-        .then(({ comment }) => {
-          this.setState(currentState => {
-            return { comments: [comment, ...currentState.comments] };
-          });
-        })
-        .catch(({ response }) => {
-          const error = { status: response.status, msg: response.data.msg };
-          this.setState({ error, isLoading: false });
-        });
-  };
 }
 
 export default ArticlePage;

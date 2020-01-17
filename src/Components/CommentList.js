@@ -21,7 +21,7 @@ class CommentList extends Component {
   }
 
   render() {
-    const { article } = this.props;
+    const { article, activeUser } = this.props;
     const { comments, page, err } = this.state;
     if (err) return <ErrorDisplay err={err} />;
     return (
@@ -34,8 +34,8 @@ class CommentList extends Component {
         />
         <CommentAdder
           addComment={this.addComment}
-          article={this.props.article}
-          activeUser={this.props.activeUser}
+          article={article}
+          activeUser={activeUser}
         />
         <ul>
           {comments.map(comment => {
@@ -43,7 +43,7 @@ class CommentList extends Component {
               <CommentCard
                 key={comment.comment_id}
                 comment={comment}
-                activeUser={this.props.activeUser}
+                activeUser={activeUser}
                 removeComment={this.removeComment}
               />
             );
@@ -54,7 +54,9 @@ class CommentList extends Component {
   }
 
   fetchComments = () => {
-    getCommentsByArticle(this.props.article.article_id, this.state.page)
+    const { article } = this.props;
+    const { page } = this.state;
+    getCommentsByArticle(article.article_id, page)
       .then(({ comments }) => {
         this.setState({ comments });
       })

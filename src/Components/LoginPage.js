@@ -16,12 +16,12 @@ class LoginPage extends Component {
   }
 
   render() {
-    const { isLoading, users } = this.state;
+    const { isLoading, users, invalidUser } = this.state;
     return isLoading ? (
       <p>Loading...</p>
     ) : (
       <form id="login-form" onSubmit={this.handleSubmit}>
-        {this.state.invalidUser && <p>Invalid username</p>}
+        {invalidUser && <p>Invalid username</p>}
         <label>
           Log in as:
           <select onChange={this.handleChange}>
@@ -44,8 +44,10 @@ class LoginPage extends Component {
   };
 
   handleSubmit = event => {
+    const { logIn } = this.props;
+    const { username } = this.state;
     event.preventDefault();
-    this.props.logIn(this.state.username);
+    logIn(username);
     navigate('/');
   };
 }

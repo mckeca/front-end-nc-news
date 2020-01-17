@@ -34,10 +34,10 @@ class CommentAdder extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { comment } = this.state;
-    const { article, activeUser } = this.props;
+    const { article, activeUser, addComment } = this.props;
     const newComment = { body: comment, username: activeUser };
     if (comment) {
-      this.props.addComment(article.article_id, newComment);
+      addComment(article.article_id, newComment);
       this.setState({ comment: '', emptyComment: false });
     } else {
       this.setState({ emptyComment: true });

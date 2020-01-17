@@ -13,10 +13,8 @@ class UserPage extends Component {
   };
 
   componentDidMount() {
-    Promise.all([
-      getUser(this.props.user),
-      getData('articles', undefined, this.props.user)
-    ])
+    const { username } = this.props;
+    Promise.all([getUser(username), getData('articles', undefined, username)])
       .then(([{ user }, { articles }]) => {
         this.setState({ user, articles, isLoading: false });
       })
@@ -27,6 +25,7 @@ class UserPage extends Component {
 
   render() {
     const { user, articles, isLoading, err } = this.state;
+    const { activeUser } = this.props;
     if (err) return <ErrorDisplay err={err} />;
     return isLoading ? (
       <p>Loading</p>
@@ -34,7 +33,7 @@ class UserPage extends Component {
       <main id="user-page">
         <img src={user.avatar_url} alt={user.username} />
         <h3>{user.name}</h3>
-        {this.props.activeUser === user.username && (
+        {activeUser === user.username && (
           <Link
             id="new-article-btn"
             to="/articles/new"

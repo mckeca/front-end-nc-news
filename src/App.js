@@ -26,7 +26,7 @@ class App extends Component {
           <ArticleList path="/:topic" />
           <ArticlePage path="/articles/:article" activeUser={activeUser} />
           <UserList path="/users" />
-          <UserPage path="/users/:user" activeUser={activeUser} />
+          <UserPage path="/users/:username" activeUser={activeUser} />
           <NewArticle path="/articles/new" activeUser={activeUser} />
           <ErrorDisplay
             default

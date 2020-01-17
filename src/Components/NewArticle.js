@@ -26,7 +26,14 @@ class NewArticle extends Component {
   }
 
   render() {
-    const { article, topics, redirect, isLoading, err } = this.state;
+    const {
+      article,
+      articleText,
+      topics,
+      redirect,
+      isLoading,
+      err
+    } = this.state;
     if (isLoading) return <p>Loading...</p>;
     if (err) return <ErrorDisplay err={err} />;
     return redirect ? (
@@ -66,7 +73,7 @@ class NewArticle extends Component {
             rows="5"
             name="articleText"
             onChange={this.handleTextChange}
-            value={this.state.articleText}
+            value={articleText}
           />
 
           <button id="new-article-submit" type="submit">
@@ -88,11 +95,12 @@ class NewArticle extends Component {
   handleArticleSubmit = async event => {
     event.preventDefault();
     const { articleText, articleTitle, articleTopic } = this.state;
+    const { activeUser } = this.props;
     const article = {
       title: articleTitle,
       body: articleText,
       topic: articleTopic,
-      author: this.props.activeUser
+      author: activeUser
     };
     postArticle(article)
       .then(({ article }) => {

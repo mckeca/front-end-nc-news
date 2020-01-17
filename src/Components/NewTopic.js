@@ -6,6 +6,7 @@ class NewTopic extends Component {
     topicDesc: ''
   };
   render() {
+    const { topicName, topicDesc } = this.state;
     return (
       <form onSubmit={this.handleTopicSubmit}>
         <p>Can't find what you're looking for? Create a new topic:</p>
@@ -16,7 +17,7 @@ class NewTopic extends Component {
             type="text"
             name="topicName"
             onChange={this.handleTextChange}
-            value={this.state.topicName}
+            value={topicName}
           ></input>
         </label>
         <label>
@@ -26,7 +27,7 @@ class NewTopic extends Component {
             type="text"
             name="topicDesc"
             onChange={this.handleTextChange}
-            value={this.state.topicDesc}
+            value={topicDesc}
           ></input>
         </label>
         <button type="submit">Submit Topic</button>
@@ -41,11 +42,12 @@ class NewTopic extends Component {
   handleTopicSubmit = event => {
     event.preventDefault();
     const { topicDesc, topicName } = this.state;
+    const { addTopic } = this.props;
     const topic = {
       description: topicDesc,
       slug: topicName
     };
-    this.props.addTopic(topic);
+    addTopic(topic);
     this.setState({ topicName: '', topicDesc: '' });
   };
 }

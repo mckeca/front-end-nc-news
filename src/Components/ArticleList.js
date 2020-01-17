@@ -66,7 +66,8 @@ class ArticleList extends Component {
         this.setState({
           articles,
           totalCount: total_count,
-          isLoading: false
+          isLoading: false,
+          err: false
         });
       })
       .catch(({ response }) => {

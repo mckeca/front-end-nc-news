@@ -78,8 +78,10 @@ class SortForm extends Component {
   };
 
   handleSubmit = event => {
+    const { sort_by, order } = this.state;
+    const { sortList } = this.props;
     event.preventDefault();
-    this.props.sortList(this.state.sort_by, this.state.order);
+    sortList(sort_by, order);
   };
 }
 

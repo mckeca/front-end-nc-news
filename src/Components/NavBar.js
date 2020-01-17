@@ -18,6 +18,7 @@ class NavBar extends Component {
 
   render() {
     const { topics, isLoading, err } = this.state;
+    const { logOut } = this.props;
     if (err) return <ErrorDisplay err={err} />;
     return (
       <ul id="nav-bar">
@@ -44,7 +45,7 @@ class NavBar extends Component {
         )}
         <li key="divider">|</li>
         <li>
-          <button onClick={this.props.logOut}>Log Out</button>
+          <button onClick={logOut}>Log Out</button>
         </li>
       </ul>
     );
