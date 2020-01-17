@@ -8,7 +8,7 @@ class NewArticle extends Component {
     article: {},
     articleTitle: '',
     articleText: '',
-    articleTopic: '',
+    articleTopic: 'coding',
     topics: [],
     redirect: false,
     isLoading: true,
