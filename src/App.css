@@ -5,6 +5,7 @@
   align-items: center;
   color: rgb(45, 45, 45);
   background-color: rgb(247, 247, 247);
+  min-height: 100vh;
   height: 100%;
 }
 
@@ -68,6 +69,10 @@ button:hover {
   color: black;
   border: 1px solid black;
   border-radius: 5px;
+}
+
+#comment-list {
+  padding: 0;
 }
 
 #new-article-btn {

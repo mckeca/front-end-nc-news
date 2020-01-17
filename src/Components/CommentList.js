@@ -37,7 +37,7 @@ class CommentList extends Component {
           article={article}
           activeUser={activeUser}
         />
-        <ul>
+        <ul id="comment-list">
           {comments.map(comment => {
             return (
               <CommentCard
