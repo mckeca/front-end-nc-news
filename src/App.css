@@ -126,6 +126,10 @@ button:hover {
   grid-row: 4 / span 1;
 }
 
+login-btn {
+  align-self: center;
+}
+
 #login-form {
   width: 20vw;
   font-size: large;

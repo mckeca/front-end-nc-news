@@ -1,68 +1,138 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Cal's Northcoders News Front End App
 
-## Available Scripts
+## Introduction
 
-In the project directory, you can run:
+Welcome to my Northcoders front end project! I've created a React app which will retrieve data from my back end project and present in to the user in a slick and intuitive fashion. Thus far, my site possesses the following functionality:
 
-### `npm start`
+- A log in page (a drop down of existing users, no authentication implemented)
+- A paginated list of all articles, or articles filtered by topic
+- The ability to sort articles by date, votes, or comments
+- The ability to click an a user's username to view their information and all articles written by them
+- The ability to view a specific article along with the comments attached
+- The ability to add a comment to any specific article
+- The ability to vote on any article or comment not written by your own user (to avoid shameless self-promotion)
+- The ability to delete any comments or articles written by your own user
+- The ability to write and add an article to any of the existing topics.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+You can find it hosted online at https://cals-nc-news.herokuapp.com/api
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+You can find the back end hosted online at https://cals-nc-news-app.herokuapp.com/api
 
-### `npm test`
+Or you can find my back end git repo at https://github.com/mckeca/nc_news
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+The first thing you'll need to do in order to run my project is clone it from github. You can do this by entering the following into your terminal:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+git clone https://github.com/mckeca/front-end-nc-news.git
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To run this project you will need Node v12.13.1. You can check you versions by running:
 
-### `npm run eject`
+```
+node -v
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+You will also need to install several packages:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- react
+- reach router
+- axios
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To install these packages you can simply run:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+npm install [package]
+```
 
-## Learn More
+with the exception of reach router, which requires the command:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+npm install @reach/router
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+alternatively, running:
 
-### Code Splitting
+```
+npm install
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+will install everything in the package.json
 
-### Analyzing the Bundle Size
+### Setting the Environment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+You're nearly ready to go! Just a couple more things to set up -
 
-### Making a Progressive Web App
+You'll need to create a file in the root directory called "knexfile.js". If you are using Linux, this will need to include your username and password for PSQL, so make sure it's included in the .gitignore! Mac users don't have to worry about it. This file will allow knex to make a connection to the database and needs to be pretty specific, so copy and paste the following:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+```javascript
+const ENV = process.env.NODE_ENV || 'development';
 
-### Advanced Configuration
+const baseConfig = {
+  client: 'pg',
+  migrations: {
+    directory: './db/migrations'
+  },
+  seeds: {
+    directory: './db/seeds'
+  }
+};
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+const customConfig = {
+  development: {
+    connection: {
+      database: 'nc_news',
+      // Linux users only:
+      username: 'your username',
+      password: 'your password'
+    }
+  },
+  test: {
+    connection: {
+      database: 'nc_news_test',
+      // Linux users only:
+      username: 'your username',
+      password: 'your password'
+    }
+  }
+};
 
-### Deployment
+module.exports = { ...customConfig[ENV], ...baseConfig };
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+### Seeding
 
-### `npm run build` fails to minify
+The last thing you have to do is seed the database - this can be done by running the command:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```
+"npm run seed"
+```
+
+in your terminal. This will seed both the development database and the test database, so both will be ready for use!
+
+## Testing
+
+Now that you've got everything set up, you might want to double check that the code actually works. There are two different test commands available, running
+
+```
+npm run test-utils
+```
+
+will test the functions responsible for manipulating data as it is seeded into the database.
+Alternatively, running
+
+```
+npm test
+```
+
+will test the server itself, making various requests to all the available endpoints. If this command takes a little time to run, don't worry. The test database is re-seeded before every test so it will take a few seconds to run through the entire suite.
+
+If all goes well, running either of these commands should result in a lot of green ticks scrolling past your terminal!
+
+## Acknowledgments
+
+- Caffeine
+- Bon Jovi
