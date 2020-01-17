@@ -7,8 +7,8 @@ Welcome to my Northcoders front end project! I've created a React app which will
 - A log in page (a drop down of existing users, no authentication implemented)
 - A paginated list of all articles, or articles filtered by topic
 - The ability to sort articles by date, votes, or comments
-- The ability to click an a user's username to view their information and all articles written by them
-- The ability to view a specific article along with the comments attached
+- The ability to click on a user's username to view their information and all articles written by them
+- The ability to view any specific article along with a paginated list of comments attached
 - The ability to add a comment to any specific article
 - The ability to vote on any article or comment not written by your own user (to avoid shameless self-promotion)
 - The ability to delete any comments or articles written by your own user
@@ -18,7 +18,7 @@ You can find it hosted online at https://cals-nc-news.herokuapp.com/api
 
 You can find the back end hosted online at https://cals-nc-news-app.herokuapp.com/api
 
-Or you can find my back end git repo at https://github.com/mckeca/nc_news
+Or you can find my back end github repo at https://github.com/mckeca/nc_news
 
 ## Getting Started
 
@@ -62,77 +62,29 @@ npm install
 
 will install everything in the package.json
 
-### Setting the Environment
+### Creating a React App
 
-You're nearly ready to go! Just a couple more things to set up -
-
-You'll need to create a file in the root directory called "knexfile.js". If you are using Linux, this will need to include your username and password for PSQL, so make sure it's included in the .gitignore! Mac users don't have to worry about it. This file will allow knex to make a connection to the database and needs to be pretty specific, so copy and paste the following:
-
-```javascript
-const ENV = process.env.NODE_ENV || 'development';
-
-const baseConfig = {
-  client: 'pg',
-  migrations: {
-    directory: './db/migrations'
-  },
-  seeds: {
-    directory: './db/seeds'
-  }
-};
-
-const customConfig = {
-  development: {
-    connection: {
-      database: 'nc_news',
-      // Linux users only:
-      username: 'your username',
-      password: 'your password'
-    }
-  },
-  test: {
-    connection: {
-      database: 'nc_news_test',
-      // Linux users only:
-      username: 'your username',
-      password: 'your password'
-    }
-  }
-};
-
-module.exports = { ...customConfig[ENV], ...baseConfig };
-```
-
-### Seeding
-
-The last thing you have to do is seed the database - this can be done by running the command:
+Once everything has installed, you'll need to create you own instance of the React app. You can do this with the terminal command:
 
 ```
-"npm run seed"
+npx create-react-app [your-app-name-here]
 ```
 
-in your terminal. This will seed both the development database and the test database, so both will be ready for use!
-
-## Testing
-
-Now that you've got everything set up, you might want to double check that the code actually works. There are two different test commands available, running
+This will likely take a minute or two, but once it's finished you'll want to to type:
 
 ```
-npm run test-utils
+cd [your-app-name-here]
 ```
 
-will test the functions responsible for manipulating data as it is seeded into the database.
-Alternatively, running
+You can now run the app locally with the command:
 
 ```
-npm test
+npm start
 ```
 
-will test the server itself, making various requests to all the available endpoints. If this command takes a little time to run, don't worry. The test database is re-seeded before every test so it will take a few seconds to run through the entire suite.
-
-If all goes well, running either of these commands should result in a lot of green ticks scrolling past your terminal!
+And that's it! You now have a running instance of my NC News app to play around with. Enjoy!
 
 ## Acknowledgments
 
 - Caffeine
-- Bon Jovi
+- Gerry Rafferty

@@ -18,6 +18,7 @@ class CommentAdder extends Component {
             name="comment"
             value={comment}
             onChange={this.handleChange}
+            autoComplete="off"
           />
         </label>
         <button type="submit">Submit</button>

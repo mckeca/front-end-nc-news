@@ -48,6 +48,7 @@ class NewArticle extends Component {
               name="articleTitle"
               onChange={this.handleTextChange}
               value={this.state.articleTitle}
+              autoComplete="off"
             />
           </label>
           <label id="new-article-topic">

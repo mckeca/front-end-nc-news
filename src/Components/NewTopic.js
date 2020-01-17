@@ -18,6 +18,7 @@ class NewTopic extends Component {
             name="topicName"
             onChange={this.handleTextChange}
             value={topicName}
+            autoComplete="off"
           ></input>
         </label>
         <label>
@@ -28,6 +29,7 @@ class NewTopic extends Component {
             name="topicDesc"
             onChange={this.handleTextChange}
             value={topicDesc}
+            autoComplete="off"
           ></input>
         </label>
         <button type="submit">Submit Topic</button>
