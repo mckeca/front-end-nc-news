@@ -8,6 +8,7 @@ class CommentAdder extends Component {
 
   render() {
     const { comment, emptyComment } = this.state;
+    const { activeUser } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
@@ -21,6 +22,7 @@ class CommentAdder extends Component {
         </label>
         <button type="submit">Submit</button>
         {emptyComment && <p>Please provide comment text</p>}
+        {activeUser.length === 0 && <p>You must log in to post a comment</p>}
       </form>
     );
   }
@@ -32,9 +34,10 @@ class CommentAdder extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { comment } = this.state;
-    const newComment = { body: comment, username: this.props.activeUser };
+    const { article, activeUser } = this.props;
+    const newComment = { body: comment, username: activeUser };
     if (comment) {
-      this.props.addComment(this.props.article.article_id, newComment);
+      this.props.addComment(article.article_id, newComment);
       this.setState({ comment: '', emptyComment: false });
     } else {
       this.setState({ emptyComment: true });
