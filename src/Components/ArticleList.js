@@ -4,6 +4,7 @@ import ArticleCard from './ArticleCard';
 import SortForm from './SortForm';
 import ErrorDisplay from './ErrorDisplay';
 import Paginator from './Paginator';
+import TopicDisplay from './TopicDisplay';
 
 class ArticleList extends Component {
   state = {
@@ -38,7 +39,7 @@ class ArticleList extends Component {
     if (err) return <ErrorDisplay err={err} />;
     return (
       <main>
-        {topic && <h3>{topic.slice(0, 1).toUpperCase() + topic.slice(1)}</h3>}
+        {topic && <TopicDisplay topicSlug={topic} />}
         <SortForm sortList={this.sortList} />
         <Paginator
           page={page}

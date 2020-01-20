@@ -32,6 +32,14 @@ export const getArticle = article => {
     });
 };
 
+export const getTopic = topicSlug => {
+  return axios
+    .get(`https://cals-nc-news-app.herokuapp.com/api/topics/${topicSlug}`)
+    .then(res => {
+      return res.data;
+    });
+};
+
 export const getCommentsByArticle = (article, page) => {
   return axios
     .get(

@@ -59,6 +59,10 @@ button:hover {
   box-shadow: 2px 2px 3px grey;
 }
 
+#topic-display {
+  text-align: center;
+}
+
 #page-btns {
   width: 100vw;
   display: flex;
