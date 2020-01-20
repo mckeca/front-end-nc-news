@@ -78,7 +78,7 @@ class ArticleList extends Component {
   };
 
   sortList = (sort_by, order) => {
-    this.setState({ sort_by, order });
+    this.setState({ sort_by, order, page: 1 });
   };
 
   handleClick = direction => {
