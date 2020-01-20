@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { getData } from '../api';
+import * as api from '../api';
 import { navigate } from '@reach/router';
 
 class LoginPage extends Component {
   state = { username: 'tickle122', users: [], isLoading: true, err: null };
 
   componentDidMount() {
-    getData('users')
+    api
+      .getList('users')
       .then(({ users }) => {
         this.setState({ users, isLoading: false });
       })

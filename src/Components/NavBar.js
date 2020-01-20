@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
-import { getData } from '../api';
+import * as api from '../api';
 import ErrorDisplay from './ErrorDisplay';
 
 class NavBar extends Component {
   state = { topics: [], isLoading: true, err: null };
 
   componentDidMount() {
-    getData('topics')
+    api
+      .getList('topics')
       .then(({ topics }) => {
         this.setState({ topics, isLoading: false });
       })

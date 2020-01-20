@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getData } from '../api';
+import * as api from '../api';
 import { Link } from '@reach/router';
 
 class UserList extends Component {
@@ -9,7 +9,7 @@ class UserList extends Component {
   };
 
   componentDidMount() {
-    getData('users').then(({ users }) => {
+    api.getList('users').then(({ users }) => {
       this.setState({ users, isLoading: false });
     });
   }

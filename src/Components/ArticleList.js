@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getData } from '../api';
+import * as api from '../api';
 import ArticleCard from './ArticleCard';
 import SortForm from './SortForm';
 import ErrorDisplay from './ErrorDisplay';
@@ -62,7 +62,8 @@ class ArticleList extends Component {
   fetchData = () => {
     const { topic } = this.props;
     const { sort_by, order, page } = this.state;
-    getData('articles', topic, undefined, sort_by, order, page)
+    api
+      .getList('articles', topic, undefined, sort_by, order, page)
       .then(({ articles, total_count }) => {
         this.setState({
           articles,

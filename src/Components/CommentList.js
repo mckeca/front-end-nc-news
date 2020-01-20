@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getCommentsByArticle, deleteComment, postComment } from '../api';
+import * as api from '../api';
 import CommentAdder from './CommentAdder';
 import CommentCard from './CommentCard';
 import ErrorDisplay from './ErrorDisplay';
@@ -56,7 +56,8 @@ class CommentList extends Component {
   fetchComments = () => {
     const { article } = this.props;
     const { page } = this.state;
-    getCommentsByArticle(article.article_id, page)
+    api
+      .getCommentsByArticle(article.article_id, page)
       .then(({ comments }) => {
         this.setState({ comments });
       })
@@ -66,7 +67,8 @@ class CommentList extends Component {
   };
 
   addComment = (id, newComment) => {
-    postComment(id, newComment)
+    api
+      .postCommentToArticle(id, newComment)
       .then(({ comment }) => {
         this.setState(currentState => {
           return { comments: [comment, ...currentState.comments] };
@@ -78,7 +80,8 @@ class CommentList extends Component {
   };
 
   removeComment = id => {
-    deleteComment(id)
+    api
+      .deleteItem('comments/', id)
       .then(() => {
         this.setState(currentState => {
           return {

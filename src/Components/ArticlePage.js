@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getArticle } from '../api';
+import * as api from '../api';
 import { formatDates } from '../utils';
 import CommentList from './CommentList';
 import Voter from './Voter';
@@ -15,7 +15,9 @@ class ArticlePage extends Component {
   };
 
   componentDidMount() {
-    getArticle(this.props.article)
+    const { article } = this.props;
+    api
+      .getItem('articles/', article)
       .then(({ article }) => {
         this.setState({ article, isLoading: false });
       })

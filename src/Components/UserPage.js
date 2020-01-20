@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getData, getUser } from '../api';
+import * as api from '../api';
 import ArticleCard from './ArticleCard';
 import { Link } from '@reach/router';
 import ErrorDisplay from './ErrorDisplay';
@@ -14,7 +14,10 @@ class UserPage extends Component {
 
   componentDidMount() {
     const { username } = this.props;
-    Promise.all([getUser(username), getData('articles', undefined, username)])
+    Promise.all([
+      api.getItem('users/', username),
+      api.getList('articles', undefined, username)
+    ])
       .then(([{ user }, { articles }]) => {
         this.setState({ user, articles, isLoading: false });
       })

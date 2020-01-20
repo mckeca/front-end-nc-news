@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getData, postArticle } from '../api';
+import * as api from '../api';
 import { Redirect, navigate } from '@reach/router';
 import ErrorDisplay from './ErrorDisplay';
 
@@ -16,7 +16,8 @@ class NewArticle extends Component {
   };
 
   componentDidMount() {
-    getData('topics')
+    api
+      .getList('topics')
       .then(({ topics }) => {
         this.setState({ topics, isLoading: false });
       })
@@ -103,7 +104,8 @@ class NewArticle extends Component {
       topic: articleTopic,
       author: activeUser
     };
-    postArticle(article)
+    api
+      .postItem('articles', article)
       .then(({ article }) => {
         this.setState({ article });
         navigate(`/articles/${article.article_id}`);

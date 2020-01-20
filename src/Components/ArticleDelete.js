@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { deleteArticle } from '../api';
+import * as api from '../api';
 import { navigate } from '@reach/router';
 
 class ArticleDelete extends Component {
@@ -29,7 +29,8 @@ class ArticleDelete extends Component {
 
   removeArticle = () => {
     const { article, activeUser } = this.props;
-    deleteArticle(article.article_id)
+    api
+      .deleteItem('articles/', article.article_id)
       .then(() => {
         navigate(`/users/${activeUser}`);
       })

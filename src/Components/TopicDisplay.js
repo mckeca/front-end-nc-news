@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getTopic } from '../api';
+import * as api from '../api';
 
 class TopicDisplay extends Component {
   state = {
@@ -31,7 +31,7 @@ class TopicDisplay extends Component {
 
   fetchTopic = () => {
     const { topicSlug } = this.props;
-    getTopic(topicSlug).then(({ topic }) => {
+    api.getItem('topics/', topicSlug).then(({ topic }) => {
       this.setState({ topic, isLoading: false });
     });
   };

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { patchVotes } from '../api';
+import * as api from '../api';
 import ErrorDisplay from './ErrorDisplay';
 
 class Voter extends Component {
@@ -57,7 +57,7 @@ class Voter extends Component {
         voted: true
       };
     });
-    patchVotes(data, id, upOrDown).catch(({ response }) => {
+    api.patchVotes(data, id, upOrDown).catch(({ response }) => {
       this.setState({ err: response });
     });
   };
