@@ -16,7 +16,7 @@ class UserPage extends Component {
     const { username } = this.props;
     Promise.all([
       api.getItem('users/', username),
-      api.getList('articles', undefined, username)
+      api.getList('articles', undefined, undefined, undefined, username)
     ])
       .then(([{ user }, { articles }]) => {
         this.setState({ user, articles, isLoading: false });

@@ -63,7 +63,7 @@ class ArticleList extends Component {
     const { topic } = this.props;
     const { sort_by, order, page } = this.state;
     api
-      .getList('articles', topic, undefined, sort_by, order, page)
+      .getList('articles', undefined, page, topic, undefined, sort_by, order)
       .then(({ articles, total_count }) => {
         this.setState({
           articles,

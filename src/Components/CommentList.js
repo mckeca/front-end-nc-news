@@ -57,7 +57,7 @@ class CommentList extends Component {
     const { article } = this.props;
     const { page } = this.state;
     api
-      .getCommentsByArticle(article.article_id, page)
+      .getList(`articles/${article.article_id}/`, 'comments', page)
       .then(({ comments }) => {
         this.setState({ comments });
       })
@@ -68,7 +68,7 @@ class CommentList extends Component {
 
   addComment = (id, newComment) => {
     api
-      .postCommentToArticle(id, newComment)
+      .postItem('articles/', newComment, id, '/comments')
       .then(({ comment }) => {
         this.setState(currentState => {
           return { comments: [comment, ...currentState.comments] };

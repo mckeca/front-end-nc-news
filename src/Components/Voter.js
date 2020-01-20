@@ -48,7 +48,7 @@ class Voter extends Component {
 
   handleClick = event => {
     const { subject } = this.props;
-    const data = subject.article_id ? 'articles' : 'comments';
+    const data = subject.article_id ? 'articles/' : 'comments/';
     const id = subject.article_id ? subject.article_id : subject.comment_id;
     const upOrDown = event.target.name === 'plus' ? 1 : -1;
     this.setState(currentState => {
