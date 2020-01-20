@@ -19,7 +19,12 @@ const ArticleCard = ({ article }) => {
       <section className="article-card">
         <img src={findImage(article.topic)} alt={article.topic} />
         <h2 className="article-title">{article.title}</h2>
-        <p className="article-topic">{article.topic}</p>
+        <Link
+          to={`/${article.topic}`}
+          style={{ textDecoration: 'none', color: 'black' }}
+        >
+          <p className="article-topic">{article.topic}</p>
+        </Link>
         <Link
           to={`/users/${article.author}`}
           style={{ textDecoration: 'none', color: 'black' }}

@@ -4,7 +4,7 @@ class SortForm extends Component {
   state = { hideForm: true, sort_by: 'created_at', order: 'desc' };
 
   render() {
-    const { hideForm } = this.state;
+    const { hideForm, sort_by, order } = this.state;
     return hideForm ? (
       <button id="sort-btn" onClick={this.toggleForm}>
         Sort
@@ -21,7 +21,17 @@ class SortForm extends Component {
               type="button"
               onClick={this.handleClick}
               name="sort_by"
+              id="created_at"
+              className={sort_by === 'created_at' ? 'selected' : 'unselected'}
+            >
+              Date
+            </button>
+            <button
+              type="button"
+              onClick={this.handleClick}
+              name="sort_by"
               id="votes"
+              className={sort_by === 'votes' ? 'selected' : 'unselected'}
             >
               Votes
             </button>
@@ -30,16 +40,11 @@ class SortForm extends Component {
               onClick={this.handleClick}
               name="sort_by"
               id="comment_count"
+              className={
+                sort_by === 'comment_count' ? 'selected' : 'unselected'
+              }
             >
               Comments
-            </button>
-            <button
-              type="button"
-              onClick={this.handleClick}
-              name="sort_by"
-              id="created_at"
-            >
-              Date
             </button>
           </section>
           <section id="order">
@@ -48,20 +53,24 @@ class SortForm extends Component {
               type="button"
               onClick={this.handleClick}
               name="order"
-              id="asc"
+              id="desc"
+              className={order === 'desc' ? 'selected' : 'unselected'}
             >
-              Ascending
+              Descending
             </button>
             <button
               type="button"
               onClick={this.handleClick}
               name="order"
-              id="desc"
+              id="asc"
+              className={order === 'asc' ? 'selected' : 'unselected'}
             >
-              Descending
+              Ascending
             </button>
           </section>
-          <button type="submit">Submit</button>
+          <button type="submit" className="unselected">
+            Submit
+          </button>
         </form>
       </section>
     );
@@ -82,6 +91,7 @@ class SortForm extends Component {
     const { sortList } = this.props;
     event.preventDefault();
     sortList(sort_by, order);
+    this.setState({ hideForm: true });
   };
 }
 

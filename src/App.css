@@ -76,6 +76,12 @@ button:hover {
   border-radius: 5px;
 }
 
+#page-btns button:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
 #comment-list {
   padding: 0;
 }
@@ -187,12 +193,24 @@ button:hover {
   border-radius: 5px;
 }
 
+#sort-btn:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
 #close-sort-btn {
   align-self: flex-start;
   background-color: white;
   color: black;
   border: 1px solid black;
   border-radius: 5px;
+}
+
+#close-sort-btn:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
 }
 
 #sort-form {
@@ -205,10 +223,24 @@ button:hover {
 
 #sort-form button {
   margin-top: 5px;
+  margin: 2px;
   background-color: white;
   color: black;
-  border: 1px solid black;
   border-radius: 5px;
+}
+
+#sort-form button:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.selected {
+  border: 2px solid black;
+}
+
+.unselected {
+  border: 1px solid black;
 }
 
 #comment-list {

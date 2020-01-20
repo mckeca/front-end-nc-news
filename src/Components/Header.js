@@ -8,7 +8,7 @@ class Header extends Component {
     showNavBar: false
   };
   render() {
-    const { activeUser, logOut } = this.props;
+    const { activeUser } = this.props;
     const { showNavBar } = this.state;
     return (
       <header>
@@ -18,7 +18,10 @@ class Header extends Component {
           </button>
         </section>
         {showNavBar && (
-          <NavBar logOut={logOut} toggleNavBar={this.toggleNavBar} />
+          <NavBar
+            logOut={this.closeMenuOnLogOut}
+            toggleNavBar={this.toggleNavBar}
+          />
         )}
         <h1>NC News</h1>
         <section id="current-user">
@@ -42,6 +45,12 @@ class Header extends Component {
     this.setState(currentState => {
       return { showNavBar: !currentState.showNavBar };
     });
+  };
+
+  closeMenuOnLogOut = () => {
+    const { logOut } = this.props;
+    logOut();
+    this.toggleNavBar();
   };
 }
 
